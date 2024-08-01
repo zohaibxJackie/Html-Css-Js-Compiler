@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.react-codemirror2 {
+    height: 43vh !important;
+}
+
+.CodeMirror {
+    height: 100% !important;
+}
