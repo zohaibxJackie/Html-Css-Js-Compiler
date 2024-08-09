@@ -9,3 +9,11 @@
 .CodeMirror {
     height: 100% !important;
 }
+
+.collapse-code {
+    align-self: flex-start;
+}
+
+.collapse-code .CodeMirror-scroll {
+    position: absolute !important;
+}

@@ -10,25 +10,20 @@ const Editor = (props) => {
     const handleChange = (editor, data, value) => {
         onchange(value);
     }
+
   return (
-    <>
-     <div className='flex justify-between bg-black text-white pr-2 pl-4'>
-        <p>{currentLanguage}</p>
-        <button>O/C</button>
-     </div>
-     <div>
-        <CodeMirror
-         onBeforeChange={handleChange}
-         value={value}
-         options={{
-            lineWrapping: true,
-            lint: true,
-            mode: language,
-            theme: "material",
-            lineNumbers: true,
-         }}
-        />
-    </div>
+    <>   
+      <CodeMirror
+        onBeforeChange={handleChange}
+        value={value}
+        options={{
+          lineWrapping: true,
+          lint: true,
+          mode: language,
+          theme: "material",
+          lineNumbers: true,
+        }}
+      />
     </>
   )
 }
