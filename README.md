@@ -4,6 +4,7 @@
 
 - [Overview](#overview)
   - [About This Project](#about-this-project)
+  - [Guidelines](#guidelines)
   - [Screenshot](#screenshot)
   - [Links](#links)
 - [My process](#my-process)
@@ -19,6 +20,13 @@
 This project provides an interactive platform where users can write and test HTML, CSS, and JavaScript code in real time. The primary goal is to create a seamless experience for experimenting with front-end code, allowing users to instantly see the results of their changes.
 
 Built with React and Tailwind CSS, the application offers a modern and responsive interface. Users can input their code into separate panels for HTML, CSS, and JavaScript, and view the output directly on the same page. This setup is designed to facilitate learning and rapid prototyping.
+
+### Guidelines
+
+- Insert Tag: This buttos is used to insert html tags from the dropdown menu
+- Layout Icons: Change the layout using the icons on the top right corner
+- Press `ctrl + s` to save the code and see results
+- You can adjust the code editors in vertical view
 
 ### Screenshot
 
