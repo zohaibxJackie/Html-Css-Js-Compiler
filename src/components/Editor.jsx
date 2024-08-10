@@ -23,6 +23,7 @@ const Editor = (props) => {
           theme: "material",
           lineNumbers: true,
         }}
+        className='max-w-full'
       />
     </>
   )

@@ -15,7 +15,7 @@ const Header = ({ setHtml, changeLayout }) => {
     }
     
     return (
-        <div className="bg-zinc-700 flex justify-between gap-4 p-4">
+        <div className="bg-[#1e1e1e] flex justify-between items-center gap-4 p-4">
             <div className='border-black border rounded px-3 py-1 text-white bg-zinc-800 relative inline-block cursor-pointer'>
                 <button title='Insert HTML tags' onClick={showItems}>Insert tag..</button>
                 {/* The reason I applied inline css instead of applying tailwind is that because I was facing an issue. Whenever I started the server, the value of scale was being updated but it was not updated in the tailwind css. so I had to apply inline css, other option was to apply a funtion in tailwind */}
