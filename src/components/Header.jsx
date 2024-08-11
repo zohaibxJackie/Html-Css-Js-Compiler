@@ -16,8 +16,8 @@ const Header = ({ setHtml, changeLayout }) => {
     
     return (
         <div className="bg-[#1e1e1e] flex justify-between items-center gap-4 p-4">
-            <div className='border-black border rounded px-3 py-1 text-white bg-zinc-800 relative inline-block cursor-pointer'>
-                <button title='Insert HTML tags' onClick={showItems}>Insert tag..</button>
+            <div className='border-black border rounded text-white bg-[#4b506299] relative inline-block cursor-pointer'>
+                <button title='Insert HTML tags' className='px-5 py-2' onClick={showItems}>Insert tag..</button>
                 {/* The reason I applied inline css instead of applying tailwind is that because I was facing an issue. Whenever I started the server, the value of scale was being updated but it was not updated in the tailwind css. so I had to apply inline css, other option was to apply a funtion in tailwind */}
                 <div className={`absolute left-0 top-[2.2rem] w-[8rem] bg-zinc-800 rounded flex flex-col z-50 `} style={{transform: `scale(${scale})`}}>
                     <button className='hover:bg-zinc-900' onClick={() => handleClick('<div></div>')}>div</button>
@@ -38,8 +38,12 @@ const Header = ({ setHtml, changeLayout }) => {
                 </div>
             </div>
             <div className='flex gap-4 text-white'>
-                <BsLayoutSidebar className='cursor-pointer' title='Change Layout' onClick={() => changeLayout('column')} />
-                <BsLayoutSidebar className='cursor-pointer rotate-90' title='Change Layout' onClick={() => changeLayout('row')} />
+                <button className='p-2 bg-[#4b506299] rounded' onClick={() => changeLayout('column')}>
+                    <BsLayoutSidebar className='cursor-pointer' title='Change Layout' />
+                </button>
+                <button className='p-2 bg-[#4b506299] rounded' onClick={() => changeLayout('row')}>
+                    <BsLayoutSidebar className='cursor-pointer rotate-90' title='Change Layout' />
+                </button>
             </div>
         </div>
     );
