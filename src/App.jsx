@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Resizable } from 're-resizable';
-import Editor from "./components/Editor";
+import Editors from "./components/Editors";
 import debounce from 'lodash/debounce';
 import Header from "./components/Header";
 import useLocalStorage from "./CustomHooks/useLocalStorage";
 import { BsArrowsAngleContract } from "react-icons/bs";
 import { BsArrowsAngleExpand } from "react-icons/bs";
 import { GoDotFill } from "react-icons/go";
+import { useHotkeys } from 'react-hotkeys-hook' 
 
 function App() {
   const [html, setHtml] = useLocalStorage("html", "<h1>Hello, programmer!</h1>");
@@ -47,13 +48,13 @@ function App() {
       </html>
     `)
   }, 250);
-
+/*
   document.addEventListener('keydown', function (event) {
     if (event.ctrlKey && (event.key === 'S' || event.key === 's')) {
       event.preventDefault(); // Prevent the default browser action
       setSave(!save);
     }
-  });
+  }); */
 
   // whenver there is some change in html, css, js, we will indicate to save the document
   useEffect(() => {
@@ -91,6 +92,15 @@ function App() {
       setLayoutVarThird(true);
     }
   }
+  useHotkeys('ctrl+s', (e) => {
+    e.preventDefault();
+    setSave(!save);
+  })
+  // useHotkeys('ctrl+s', (e) => {
+  //   e.preventDefault();
+  //     setSave(!save);
+  // }, { scopes: ['settings'] })
+  
 
   return (
     <>
@@ -99,6 +109,8 @@ function App() {
 
       <div className={`flex ${layoutVarOne ? 'flex-col' : 'flex-row'} overflow-hidden`}>
         {/* The resizable will allow it to resize if the user want to resize */}
+        {/* <HotkeysProvider initiallyActiveScopes={['settings']}> */}
+
         <Resizable
           enable={{
             right: true,   // Allow resizing from the right side only
@@ -112,6 +124,7 @@ function App() {
           }}
           minWidth={`${layoutVarThird ? '100%' : '30%'}`}
           maxWidth={'80%'}
+          
         >
           <div className={`flex gap-4 px-3 pt-1 min-w-[30vw] bg-[#252526] ${layoutVarOne ? "flex-row" : "flex-col"}`}>
             <div className={`${htmlGrow} flex flex-col`}>
@@ -120,12 +133,12 @@ function App() {
                 <p>{indicateSave ? <GoDotFill className="inline" /> : ''} HTML</p>
                 <button onClick={() => handleLength('HTML')}>{iconToggleHtml ? <BsArrowsAngleContract /> : <BsArrowsAngleExpand />}</button>
               </div>
-              <Editor
-                language={"xml"}
-                value={html}
-                onchange={setHtml}
-                iconToggleHtml={iconToggleHtml}
-              />
+                <Editors
+                  language={"xml"}
+                  value={html}
+                  onchange={setHtml}
+                  iconToggleHtml={iconToggleHtml}
+                />
             </div>
             <div className={`${cssGrow} flex flex-col`}>
               {/* CSS editor */}
@@ -133,7 +146,7 @@ function App() {
                 <p>{indicateSave ? <GoDotFill className="inline" /> : ''} CSS</p>
                 <button onClick={() => handleLength('CSS')}>{iconToggleCss ? <BsArrowsAngleContract /> : <BsArrowsAngleExpand />}</button>
               </div>
-              <Editor
+              <Editors
                 language={"css"}
                 value={css}
                 onchange={setCss}
@@ -146,7 +159,7 @@ function App() {
                 <p>{indicateSave ? <GoDotFill className="inline" /> : ''} JS</p>
                 <button onClick={() => handleLength('JS')}>{iconToggleJs ? <BsArrowsAngleContract /> : <BsArrowsAngleExpand />}</button>
               </div>
-              <Editor
+              <Editors
                 language={"javascript"}
                 value={js}
                 onchange={setJs}
@@ -155,6 +168,8 @@ function App() {
             </div>
           </div>
         </Resizable>
+        {/* </HotkeysProvider> */}
+
         {/* this is the ifram section where website is rendered */}
         <div className={`${layoutVarTwo ? 'h-[50vh]' : 'auto'} w-full max-w-full`}>
           <iframe
