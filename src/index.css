@@ -1,20 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.react-codemirror2 {
-    height: 43vh !important;
-}
-
-.CodeMirror {
-    height: 100% !important;
-}
-
-.collapse-code {
-    align-self: flex-start;
-}
-
-.collapse-code .CodeMirror-scroll {
-    position: absolute !important;
-}
-  

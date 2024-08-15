@@ -1,45 +1,39 @@
-// import 'codemirror/lib/codemirror.css'
-// import 'codemirror/theme/material.css'
-// import 'codemirror/mode/xml/xml'
-// import 'codemirror/mode/css/css'
-// import 'codemirror/mode/javascript/javascript'
-// import { Controlled as CodeMirror } from 'react-codemirror2'
-
 import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react';
+import { useEffect, useState } from 'react';
 
 const Editors = (props) => {
-  const { language, value, onchange, currentLanguage } = props;
+  const { language, value, onchange, setSave } = props;
   const handleChange = (value, event) => {
     onchange(value);
   }
-  function handleEditorDidMount(editor, monaco) {
-    console.log('onMount: the editor instance:', editor);
-    console.log('onMount: the monaco instance:', monaco);
-  }
 
+  function handleEditorDidMount(editor, monaco) {
+    editor.addAction({
+      id: 'save-action',
+      label: 'Save',
+      keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS],
+      run: () => {
+        // Prevent default save behavior if needed
+        editor.getAction('editor.action.formatDocument').run(); // Example action: format document
+        setSave(prev => {
+          return !prev;
+        });
+      },
+    });
+  }
+  
   return (
     <>
-        {/* <CodeMirror
-          onBeforeChange={handleChange}
-          value={value}
-          options={{
-            lineWrapping: true,
-            lint: true,
-            mode: language,
-            theme: "material",
-            lineNumbers: true,
-          }}
-          className='max-w-full'
-        /> */}
         <Editor
         height="50vh" 
         defaultLanguage={`${language}`} 
         defaultValue={`${value}`} 
+        value={`${value}`}
         theme="vs-dark"
         onChange={handleChange}
         onMount={handleEditorDidMount}
-        />;
         
+        />;     
     </>
   )
 }
