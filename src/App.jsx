@@ -88,10 +88,10 @@ function App() {
           }}
           minWidth={`${layoutVarThird ? '100%' : '30%'}`}
           maxWidth={'80%'}
+          >
           
-        >
             <div className={`flex gap-4 px-3 pt-1 min-w-[30vw] bg-[#252526] ${layoutVarOne ? "flex-row" : "flex-col"}`}>
-              <div className={`flex flex-col w-[${editorWidth ? '33.33%' : '100%'}]`}>
+              <div className={`flex flex-col w-[${editorWidth ? '33.33%' : '100%'}] min-w-[33.33%]`}>
                 {/* HTml editor */}
                 <div className='flex justify-between bg-black text-white pr-2 pl-4'>
                   <p>{indicateSave ? <GoDotFill className="inline" /> : ''} HTML</p>
@@ -104,7 +104,7 @@ function App() {
                     save={save}
                   />
               </div>
-              <div className={`flex flex-col w-[${editorWidth ? '33.33%' : '100%'}]`}>
+              <div className={`flex flex-col w-[${editorWidth ? '33.33%' : '100%'}] min-w-[33.33%]`}>
                 {/* CSS editor */}
                 <div className='bg-black text-white pr-2 pl-4'>
                   <p>{indicateSave ? <GoDotFill className="inline" /> : ''} CSS</p>
@@ -118,7 +118,7 @@ function App() {
 
                 />
               </div>
-              <div className={`flex flex-col w-[${editorWidth ? '33.33%' : '100%'}]`}>
+              <div className={`flex flex-col w-[${editorWidth ? '33.33%' : '100%'}] min-w-[33.33%]`}>
                 {/* JS editor */}
                 <div className='flex justify-between bg-black text-white pr-2 pl-4'>
                   <p>{indicateSave ? <GoDotFill className="inline" /> : ''} JS</p>
