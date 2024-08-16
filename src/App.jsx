@@ -74,66 +74,67 @@ function App() {
       <div className={`flex ${layoutVarOne ? 'flex-col' : 'flex-row'} overflow-hidden`}>
         {/* The resizable will allow it to resize if the user want to resize */}
         {/* <HotkeysProvider initiallyActiveScopes={['settings']}> */}
-
-        <Resizable
-          enable={{
-            right: true,   // Allow resizing from the right side only
-            left: false,
-            top: false,
-            bottom: false,
-            topRight: false,
-            bottomRight: false,
-            bottomLeft: false,
-            topLeft: false,
-          }}
-          minWidth={`${layoutVarThird ? '100%' : '30%'}`}
-          maxWidth={'80%'}
-          >
-          
-            <div className={`flex gap-4 px-3 pt-1 min-w-[30vw] bg-[#252526] ${layoutVarOne ? "flex-row" : "flex-col"}`}>
-              <div className={`flex flex-col w-[${editorWidth ? '33.33%' : '100%'}] min-w-[33.33%]`}>
-                {/* HTml editor */}
-                <div className='flex justify-between bg-black text-white pr-2 pl-4'>
-                  <p>{indicateSave ? <GoDotFill className="inline" /> : ''} HTML</p>
+        {/* <div> */}
+          <Resizable
+            enable={{
+              right: true,   // Allow resizing from the right side only
+              left: false,
+              top: false,
+              bottom: false,
+              topRight: false,
+              bottomRight: false,
+              bottomLeft: false,
+              topLeft: false,
+            }}
+            minWidth={`${layoutVarThird ? '100%' : '30%'}`}
+            maxWidth={'80%'}
+            >
+            
+              <div className={`flex gap-4 pr-10 pt-1 min-w-[30vw] bg-[#252526] ${layoutVarOne ? "flex-row" : "flex-col"}`}>
+                <div className={`flex flex-col w-[${editorWidth ? '33.33%' : '100%'}] min-w-[33.33%] max-w-full`}>
+                  {/* HTml editor */}
+                  <div className='flex justify-between bg-black text-white pr-2 pl-4'>
+                    <p>{indicateSave ? <GoDotFill className="inline" /> : ''} HTML</p>
+                  </div>
+                    <Editors
+                      language={"html"}
+                      value={html}
+                      onchange={setHtml}
+                      setSave={setSave}
+                      save={save}
+                    />
                 </div>
+                <div className={`flex flex-col w-[${editorWidth ? '33.33%' : '100%'}] min-w-[33.33%] max-w-full`}>
+                  {/* CSS editor */}
+                  <div className='bg-black text-white pr-2 pl-4'>
+                    <p>{indicateSave ? <GoDotFill className="inline" /> : ''} CSS</p>
+                  </div>
                   <Editors
-                    language={"html"}
-                    value={html}
-                    onchange={setHtml}
+                    language={"css"}
+                    value={css}
+                    onchange={setCss}
                     setSave={setSave}
                     save={save}
+
                   />
-              </div>
-              <div className={`flex flex-col w-[${editorWidth ? '33.33%' : '100%'}] min-w-[33.33%]`}>
-                {/* CSS editor */}
-                <div className='bg-black text-white pr-2 pl-4'>
-                  <p>{indicateSave ? <GoDotFill className="inline" /> : ''} CSS</p>
                 </div>
-                <Editors
-                  language={"css"}
-                  value={css}
-                  onchange={setCss}
-                  setSave={setSave}
-                  save={save}
+                <div className={`flex flex-col w-[${editorWidth ? '33.33%' : '100%'}] min-w-[33.33%] max-w-full`}>
+                  {/* JS editor */}
+                  <div className='flex justify-between bg-black text-white pr-2 pl-4'>
+                    <p>{indicateSave ? <GoDotFill className="inline" /> : ''} JS</p>
+                  </div>
+                  <Editors
+                    language={"javascript"}
+                    value={js}
+                    onchange={setJs}
+                    setSave={setSave}
+                    save={save}
 
-                />
-              </div>
-              <div className={`flex flex-col w-[${editorWidth ? '33.33%' : '100%'}] min-w-[33.33%]`}>
-                {/* JS editor */}
-                <div className='flex justify-between bg-black text-white pr-2 pl-4'>
-                  <p>{indicateSave ? <GoDotFill className="inline" /> : ''} JS</p>
+                  />
                 </div>
-                <Editors
-                  language={"javascript"}
-                  value={js}
-                  onchange={setJs}
-                  setSave={setSave}
-                  save={save}
-
-                />
               </div>
-            </div>
-        </Resizable>
+          </Resizable>
+        {/* </div> */}
         {/* </HotkeysProvider> */}
 
         {/* this is the ifram section where website is rendered */}
